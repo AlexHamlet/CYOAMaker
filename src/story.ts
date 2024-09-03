@@ -1,8 +1,13 @@
-import { updateTextDump } from "./graph";
+import { updateDisplay } from "./graph";
 import { Page, StoryFile, StoryPath } from "./types/story_file";
 
 export let storyName = "placeholder";
 export let story: StoryFile = {};
+
+export function setStory(storyName: string, storyFile: StoryFile){
+    story = storyFile;
+    updateDisplay(story);
+}
 
 export function addPage(pageId: string, pageText: string): void {
     //Ensure there is a start to the story
@@ -15,7 +20,7 @@ export function addPage(pageId: string, pageText: string): void {
         Options: {}
     };
     story[pageId] = page;
-    updateTextDump(story);
+    updateDisplay(story);
 }
 
 export function connectPages(fromNodeId: string, toNodeId: string, nodeSelector: string, connectionFlavorText: string) {
@@ -26,7 +31,7 @@ export function connectPages(fromNodeId: string, toNodeId: string, nodeSelector:
         Path: toNodeId
     }
     fromPage.Options[nodeSelector] = connection;
-    updateTextDump(story);
+    updateDisplay(story);
 }
 
 export function deletePage(pageId: string): void {
@@ -40,10 +45,10 @@ export function deletePage(pageId: string): void {
             }
         }
     }
-    updateTextDump(story);
+    updateDisplay(story);
 }
 
 export function editPage(pageId: string, page: Page): void {
     story[pageId] = page;
-    updateTextDump(story);
+    updateDisplay(story);
 }

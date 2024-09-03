@@ -1,3 +1,4 @@
+import { exportStory, importStory } from './file';
 import { addPage, connectPages, deletePage } from './story';
 
 function addNodeButton(): void {
@@ -25,12 +26,25 @@ function connectNodeButton(): void {
 }
 (window as any).connectNodeButton = connectNodeButton;
 
-function importStoryButton(): void{
 
+const fileInput = document.getElementById('storyFile');
+fileInput?.addEventListener('change', importStoryButton);
+function importStoryButton(event: Event): void {
+  const input = event.target as HTMLInputElement;
+
+  // Ensure a file was selected
+  if (!input.files || input.files.length === 0) {
+    console.log('No file selected');
+    return;
+  }
+
+  // Get the first file from the input
+  const file = input.files[0];
+
+  importStory(file.name, file);
 }
-(window as any).importStoryButton = importStoryButton;
 
-function exportStoryButton(): void{
-
+function exportStoryButton(): void {
+  exportStory()
 }
 (window as any).exportStoryButton = exportStoryButton;

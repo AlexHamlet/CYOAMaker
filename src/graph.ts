@@ -1,15 +1,19 @@
 import { StoryFile } from "./types/story_file";
 // import * as d3 from 'd3';
 
+export function updateDisplay(story: StoryFile): void{
+    updateTextDump(story);
+    updateGraph(story);
+}
 
-export function updateTextDump(story: StoryFile): void {
+function updateTextDump(story: StoryFile): void {
     let storyText = JSON.stringify(story);
     let printOut = document.getElementById('StoryPrintOut');
     if (printOut)
         printOut.innerHTML = storyText;
 }
 
-export function updateGraph(story: StoryFile): void {
+function updateGraph(story: StoryFile): void {
 
 }
 
