@@ -20,32 +20,41 @@
   </div>
 
   <div>
-    <h3>Add Node</h3>
-    <label for="addNodeId">Page Title: </label>
-    <input type="text" id="addNodeId" name="addNodeId">
-    <label for="addNodeText">Page Content:</label>
-    <textarea id="addNodeText" name="addNodeText"></textarea>
-    <button onclick="addNodeButton()">Add</button>
+    <form onsubmit="return addNode(event)">
+      <h3>Add Node</h3>
+      <label for="addNodeId">Page Title: </label>
+      <input type="text" id="addNodeId" name="addNodeId" required>
+      <label for="addNodeText">Page Content:</label>
+      <textarea id="addNodeText" name="addNodeText" required></textarea>
+      <button type="submit">Add</button>
+      <button type="reset">Clear</button>
+    </form>
   </div>
 
   <div>
-    <h3>Delete Node</h3>
-    <label for="delNodeId">Page Title:</label>
-    <input type="text" id="deleteNodeId" name="deleteNodeId">
-    <button onclick="deleteNodeButton()">Delete</button>
+    <form onsubmit="return deleteNode(event)">
+      <h3>Delete Node</h3>
+      <label for="delNodeId">Page Title:</label>
+      <input type="text" id="deleteNodeId" name="deleteNodeId" required>
+      <button type="submit">Delete</button>
+      <button type="reset">Clear</button>
+    </form>
   </div>
 
   <div>
-    <h3>Connect Nodes</h3>
-    <label for="pathSelector">Path Selector:</label>
-    <input type="text" id="pathSelector" name="pathSelector">
-    <label for="fromNodeId">From Page:</label>
-    <input type="text" id="fromNodeId" name="fromNodeId">
-    <label for="toNodeId">To Page:</label>
-    <input type="text" id="toNodeId" name="toNodeId">
-    <label for="connectNodeText">Flavortext For Option:</label>
-    <textarea id="connectNodeText" name="connectNodeText"></textarea>
-    <button onclick="connectNodeButton()">Connect</button>
+    <form onsubmit="return connectNode(event)">
+      <h3>Connect Nodes</h3>
+      <label for="pathSelector">Path Selector:</label>
+      <input type="text" id="pathSelector" name="pathSelector" required>
+      <label for="fromNodeId">From Page:</label>
+      <input type="text" id="fromNodeId" name="fromNodeId" required>
+      <label for="toNodeId">To Page:</label>
+      <input type="text" id="toNodeId" name="toNodeId" required>
+      <label for="connectNodeText">Flavortext For Option:</label>
+      <textarea id="connectNodeText" name="connectNodeText" required></textarea>
+      <button type="submit">Connect</button>
+      <button type="reset">Clear</button>
+    </form>
   </div>
 
   <div>

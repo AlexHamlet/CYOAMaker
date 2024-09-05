@@ -1,22 +1,25 @@
 import { exportStory, importStory } from './file';
 import { addPage, connectPages, deletePage } from './story';
 
-function addNodeButton(): void {
+function addNode(event: Event): void {
+  event.preventDefault();
   let nodeId = document.getElementById('addNodeId') as HTMLInputElement;
   let pageContentElement = document.getElementById('addNodeText') as HTMLTextAreaElement;
 
   addPage(nodeId.value, pageContentElement.value);
 }
-(window as any).addNodeButton = addNodeButton;
+(window as any).addNode = addNode;
 
-function deleteNodeButton(): void {
+function deleteNode(event: Event): void {
+  event.preventDefault();
   let nodeId = document.getElementById('deleteNodeId') as HTMLInputElement;
 
   deletePage(nodeId.value);
 }
-(window as any).deleteNodeButton = deleteNodeButton;
+(window as any).deleteNode = deleteNode;
 
-function connectNodeButton(): void {
+function connectNode(event: Event): void {
+  event.preventDefault();
   let fromNodeId = document.getElementById('fromNodeId') as HTMLInputElement;
   let toNodeId = document.getElementById('toNodeId') as HTMLInputElement;
   let connectNodeText = document.getElementById('connectNodeText') as HTMLTextAreaElement;
@@ -24,7 +27,7 @@ function connectNodeButton(): void {
 
   connectPages(fromNodeId.value, toNodeId.value, pathSelector.value, connectNodeText.value);
 }
-(window as any).connectNodeButton = connectNodeButton;
+(window as any).connectNode = connectNode;
 
 
 const fileInput = document.getElementById('storyFile');
