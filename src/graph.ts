@@ -1,4 +1,5 @@
 import { StoryFile } from "./types/story_file";
+import { getAllPages } from "./story";
 
 export function updateDisplay(story: StoryFile): void {
     updateTextDump(story);
@@ -10,6 +11,11 @@ function updateTextDump(story: StoryFile): void {
     let printOut = document.getElementById('StoryPrintOut');
     if (printOut)
         printOut.innerHTML = storyText;
+
+    let pageNames = JSON.stringify(getAllPages())
+    let pageNamesOut = document.getElementById('PageNamePrintOut');
+    if (pageNamesOut)
+        pageNamesOut.innerHTML = pageNames;
 }
 
 function updateGraph(story: StoryFile): void {

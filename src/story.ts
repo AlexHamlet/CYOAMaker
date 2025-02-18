@@ -4,14 +4,14 @@ import { Page, StoryFile, StoryPath } from "./types/story_file";
 export let storyName = "placeholder";
 export let story: StoryFile = {};
 
-export function setStory(storyName: string, storyFile: StoryFile){
+export function setStory(storyName: string, storyFile: StoryFile) {
     story = storyFile;
     updateDisplay(story);
 }
 
 export function addPage(pageId: string, pageText: string): void {
     //Ensure there is a start to the story
-    if(Object.keys(story).length  == 0)
+    if (Object.keys(story).length == 0)
         pageId = "Start";
 
     const page: Page = {
@@ -52,3 +52,11 @@ export function editPage(pageId: string, page: Page): void {
     story[pageId] = page;
     updateDisplay(story);
 }
+
+export function getAllPages(): String[] {
+    return Object.getOwnPropertyNames(story);
+}
+
+// export function getConnectedPages(page: Page): [string] {
+//     return page.Options;
+// }
