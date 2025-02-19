@@ -1,24 +1,45 @@
-# New Project
+# VueVersion
 
-> ✨ Bootstrapped with Create Snowpack App (CSA).
+This template should help get you started developing with Vue 3 in Vite.
 
-## Available Scripts
+## Recommended IDE Setup
 
-### npm start
+[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
 
-Runs the app in the development mode.
-Open http://localhost:8080 to view it in the browser.
+## Type Support for `.vue` Imports in TS
 
-The page will reload if you make edits.
-You will also see any lint errors in the console.
+TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
 
-### npm run build
+## Customize configuration
 
-Builds a static copy of your site to the `build/` folder.
-Your app is ready to be deployed!
+See [Vite Configuration Reference](https://vite.dev/config/).
 
-**For the best production performance:** Add a build bundler plugin like [@snowpack/plugin-webpack](https://github.com/snowpackjs/snowpack/tree/main/plugins/plugin-webpack) or [snowpack-plugin-rollup-bundle](https://github.com/ParamagicDev/snowpack-plugin-rollup-bundle) to your `snowpack.config.mjs` config file.
+## Project Setup
 
-### Q: What about Eject?
+```sh
+npm install
+```
 
-No eject needed! Snowpack guarantees zero lock-in, and CSA strives for the same.
+### Compile and Hot-Reload for Development
+
+```sh
+npm run dev
+```
+
+### Type-Check, Compile and Minify for Production
+
+```sh
+npm run build
+```
+
+### Run Unit Tests with [Vitest](https://vitest.dev/)
+
+```sh
+npm run test:unit
+```
+
+### Lint with [ESLint](https://eslint.org/)
+
+```sh
+npm run lint
+```
