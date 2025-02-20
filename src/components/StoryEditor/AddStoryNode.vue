@@ -17,8 +17,8 @@ import { addPage } from '../services/Story';
 
 function addNode(event: Event): void {
     event.preventDefault();
-    let nodeId = document.getElementById('addNodeId') as HTMLInputElement;
-    let pageContentElement = document.getElementById('addNodeText') as HTMLTextAreaElement;
+    const nodeId = document.getElementById('addNodeId') as HTMLInputElement;
+    const pageContentElement = document.getElementById('addNodeText') as HTMLTextAreaElement;
 
     addPage(nodeId.value, pageContentElement.value);
 }

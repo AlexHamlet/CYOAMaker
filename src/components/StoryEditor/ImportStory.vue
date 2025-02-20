@@ -1,8 +1,10 @@
 <template>
     <div>
-        <h3>Import</h3>
-        <input type="file" id="storyFile" name="storyFile" accept=".json">
-        <input type="button" @click="importStoryButton" value="Import Story">
+        <form @submit.prevent="importStoryButton">
+            <h3>Import</h3>
+            <input type="file" id="storyFile" name="storyFile" accept=".json">
+            <input type="submit" @click="importStoryButton" value="Import Story">
+        </form>
     </div>
 </template>
 
