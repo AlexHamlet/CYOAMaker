@@ -2,8 +2,8 @@
 import { ref } from "vue";
 import type { Page, StoryFile, StoryPath } from "../types/StoryFile";
 
-export let storyName = "placeholder";
-export let story = ref<StoryFile>({});
+export const storyName = "placeholder";
+export const story = ref<StoryFile>({});
 
 export function setStory(storyName: string, storyFile: StoryFile) {
     story.value = storyFile;
@@ -23,8 +23,8 @@ export function addPage(pageId: string, pageText: string): void {
 }
 
 export function connectPages(fromNodeId: string, toNodeId: string, nodeSelector: string, connectionFlavorText: string) {
-    let fromPage: Page = story.value[fromNodeId];
-    let connection: StoryPath = {
+    const fromPage: Page = story.value[fromNodeId];
+    const connection: StoryPath = {
         Selector: nodeSelector,
         Text: connectionFlavorText,
         Path: toNodeId
@@ -35,8 +35,8 @@ export function connectPages(fromNodeId: string, toNodeId: string, nodeSelector:
 export function deletePage(pageId: string): void {
     delete story.value[pageId];
     //Delete all paths to that node
-    for (let page in story) {
-        let currentPage: Page = story.value[page];
+    for (const page in story) {
+        const currentPage: Page = story.value[page];
         for (const key in currentPage.Options) {
             if (currentPage.Options[key].Path === pageId) {
                 delete currentPage.Options[key];
@@ -49,10 +49,14 @@ export function editPage(pageId: string, page: Page): void {
     story.value[pageId] = page;
 }
 
-export function getAllPages(): String[] {
+export function getAllPages(): string[] {
     return Object.getOwnPropertyNames(story.value);
 }
 
-// export function getConnectedPages(page: Page): [string] {
-//     return page.Options;
-// }
+export function getConnectedPages(page: Page): string[] {
+    const paths: string[] = [];
+    Object.getOwnPropertyNames(page.Options).forEach(path => {
+        paths.push(path);
+    });
+    return paths;
+}

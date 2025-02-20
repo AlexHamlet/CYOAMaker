@@ -7,11 +7,14 @@
             <input type="text" id="pathSelector" name="pathSelector" required>
 
             <label for="fromNodeId">From Page:</label>
-            <!-- <v-select :options="getAllPages()" label="fromNodeId" id="fromNodeId"></v-select> -->
-            <input type="text" id="fromNodeId" name="fromNodeId" required>
+            <select id="fromNodeId">
+                <option v-for="page in pages" :key="page">{{ page }}</option>
+            </select>
 
             <label for="toNodeId">To Page:</label>
-            <input type="text" id="toNodeId" name="toNodeId" required>
+            <select id="toNodeId">
+                <option v-for="page in pages" :key="page">{{ page }}</option>
+            </select>
 
             <label for="connectNodeText">Flavortext For Option:</label>
             <textarea id="connectNodeText" name="connectNodeText" required></textarea>
@@ -23,16 +26,22 @@
 </template>
 
 <script setup lang="ts">
-import { connectPages } from '../services/Story';
+import { ref, watchEffect } from 'vue';
+import { connectPages, getAllPages, story } from '../services/Story';
+
+const pages = ref<string[]>([]);
 
 function connectNode(event: Event): void {
     event.preventDefault();
-    let fromNodeId = document.getElementById('fromNodeId') as HTMLInputElement;
-    let toNodeId = document.getElementById('toNodeId') as HTMLInputElement;
-    let connectNodeText = document.getElementById('connectNodeText') as HTMLTextAreaElement;
-    let pathSelector = document.getElementById('pathSelector') as HTMLInputElement;
+    const fromNodeId = document.getElementById('fromNodeId') as HTMLInputElement;
+    const toNodeId = document.getElementById('toNodeId') as HTMLInputElement;
+    const connectNodeText = document.getElementById('connectNodeText') as HTMLTextAreaElement;
+    const pathSelector = document.getElementById('pathSelector') as HTMLInputElement;
 
     connectPages(fromNodeId.value, toNodeId.value, pathSelector.value, connectNodeText.value);
 }
-(window as any).connectNode = connectNode;
+
+watchEffect(() => {
+    pages.value = getAllPages()
+});
 </script>
