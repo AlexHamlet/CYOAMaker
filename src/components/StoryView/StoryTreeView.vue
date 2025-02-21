@@ -5,7 +5,7 @@
 <script setup lang="ts">
 import { ref, watchEffect } from 'vue';
 import type { StoryFile } from '../types/StoryFile';
-import { story } from '../services/Story';
+import { getConnectedPages, story } from '../services/Story';
 
 const treedump = ref('')
 
@@ -26,8 +26,8 @@ function recurseTree(pageid: string, level: number, path: string[]): string {
     }
     path.push(page.id);
 
-    Object.entries(page.Options).forEach(([selector, storyPath]) => {
-        retval += recurseTree(storyPath.Path, level + 1, path)
+    getConnectedPages(page).forEach(connectedPage => {
+        retval += recurseTree(connectedPage, level + 1, Object.assign([], path))
     })
 
     return retval;

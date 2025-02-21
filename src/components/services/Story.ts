@@ -55,8 +55,8 @@ export const allPages = computed((): string[] => {
 
 export function getConnectedPages(page: Page): string[] {
     const paths: string[] = [];
-    Object.getOwnPropertyNames(page.Options).forEach(path => {
-        paths.push(path);
-    });
+    Object.entries(page.Options).forEach(([selector, storyPath]) => {
+        paths.push(storyPath.Path)
+    })
     return paths;
 }
