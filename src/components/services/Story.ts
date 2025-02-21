@@ -1,5 +1,5 @@
 
-import { ref } from "vue";
+import { computed, ref } from "vue";
 import type { Page, StoryFile, StoryPath } from "../types/StoryFile";
 
 export const storyName = "placeholder";
@@ -49,9 +49,9 @@ export function editPage(pageId: string, page: Page): void {
     story.value[pageId] = page;
 }
 
-export function getAllPages(): string[] {
+export const allPages = computed((): string[] => {
     return Object.getOwnPropertyNames(story.value);
-}
+})
 
 export function getConnectedPages(page: Page): string[] {
     const paths: string[] = [];

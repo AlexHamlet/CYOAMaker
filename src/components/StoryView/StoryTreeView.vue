@@ -21,7 +21,7 @@ function recurseTree(pageid: string, level: number, path: string[]): string {
     const page = story.value[pageid];
     let retval = '\t'.repeat(level) + page.id + '\n';
 
-    if (page.id in path) {
+    if (path.includes(page.id)) {
         return '';
     }
     path.push(page.id);

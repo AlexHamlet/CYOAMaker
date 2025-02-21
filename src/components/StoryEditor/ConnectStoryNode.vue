@@ -8,12 +8,12 @@
 
             <label for="fromNodeId">From Page:</label>
             <select id="fromNodeId">
-                <option v-for="page in pages" :key="page">{{ page }}</option>
+                <option v-for="page in allPages" :key="page">{{ page }}</option>
             </select>
 
             <label for="toNodeId">To Page:</label>
             <select id="toNodeId">
-                <option v-for="page in pages" :key="page">{{ page }}</option>
+                <option v-for="page in allPages" :key="page">{{ page }}</option>
             </select>
 
             <label for="connectNodeText">Flavortext For Option:</label>
@@ -26,10 +26,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watchEffect } from 'vue';
-import { connectPages, getAllPages, story } from '../services/Story';
-
-const pages = ref<string[]>([]);
+import { connectPages, allPages } from '../services/Story';
 
 function connectNode(event: Event): void {
     event.preventDefault();
@@ -40,8 +37,4 @@ function connectNode(event: Event): void {
 
     connectPages(fromNodeId.value, toNodeId.value, pathSelector.value, connectNodeText.value);
 }
-
-watchEffect(() => {
-    pages.value = getAllPages()
-});
 </script>
