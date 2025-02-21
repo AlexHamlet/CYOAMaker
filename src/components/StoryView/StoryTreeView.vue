@@ -17,7 +17,6 @@ function updateTreedump(story: StoryFile): void {
 }
 
 function recurseTree(pageid: string, level: number, path: string[]): string {
-    debugger;
     const page = story.value[pageid];
     let retval = '\t'.repeat(level) + page.id + '\n';
 
