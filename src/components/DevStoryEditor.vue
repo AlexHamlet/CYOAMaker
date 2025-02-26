@@ -8,7 +8,14 @@
     <StoryTextDump></StoryTextDump>
   </div>
   <div class="sidebar">
-    <StoryTreeView></StoryTreeView>
+    <!-- <StoryTreeView></StoryTreeView> -->
+    <ul>
+      <StoryTree
+        v-if="story.Start"
+        :page="story.Start"
+        :pageids="[]"
+      ></StoryTree>
+    </ul>
   </div>
 </template>
 
@@ -20,6 +27,8 @@ import ExportStory from './StoryEditor/ExportStory.vue';
 import ImportStory from './StoryEditor/ImportStory.vue';
 import StoryTextDump from './StoryView/StoryTextDump.vue';
 import StoryTreeView from './StoryView/StoryTreeView.vue';
+import StoryTree from './StoryTree.vue';
+import { story } from '@/services/Story';
 </script>
 
 <style scoped>
@@ -29,7 +38,6 @@ import StoryTreeView from './StoryView/StoryTreeView.vue';
   padding: 20px;
 }
 
-
 .sidebar {
   margin: 0;
   position: fixed;
@@ -37,7 +45,7 @@ import StoryTreeView from './StoryView/StoryTreeView.vue';
   top: 0;
   width: 250px;
   height: 100vh;
-  background: #f0f0f0;
+  /* background: #f0f0f0; */
   overflow-y: auto;
   border-right: 2px solid #ccc;
 }

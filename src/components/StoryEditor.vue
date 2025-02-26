@@ -19,7 +19,6 @@ import StoryTreeView from './StoryView/StoryTreeView.vue';
   padding: 20px;
 }
 
-
 .sidebar {
   margin: 0;
   position: fixed;
