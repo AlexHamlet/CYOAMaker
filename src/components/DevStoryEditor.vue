@@ -1,3 +1,18 @@
+<script setup lang="ts">
+import AddStoryNode from './StoryEditor/AddStoryNode.vue';
+import ConnectStoryNode from './StoryEditor/ConnectStoryNode.vue';
+import DeleteStoryNode from './StoryEditor/DeleteStoryNode.vue';
+import ExportStory from './StoryEditor/ExportStory.vue';
+import ImportStory from './StoryEditor/ImportStory.vue';
+import StoryTextDump from './StoryView/StoryTextDump.vue';
+import StoryTree from './StoryTree.vue';
+import { story } from '@/services/Story';
+
+const catchPage = (pageid: string) => {
+  alert(pageid);
+};
+</script>
+
 <template>
   <div class="main-content">
     <ImportStory></ImportStory>
@@ -9,27 +24,14 @@
   </div>
   <div class="sidebar">
     <!-- <StoryTreeView></StoryTreeView> -->
-    <ul>
-      <StoryTree
-        v-if="story.Start"
-        :page="story.Start"
-        :pageids="[]"
-      ></StoryTree>
-    </ul>
+    <StoryTree
+      @response="(pageId: string) => catchPage(pageId)"
+      v-if="story.Start"
+      :page="story.Start"
+      :pageids="[]"
+    ></StoryTree>
   </div>
 </template>
-
-<script setup lang="ts">
-import AddStoryNode from './StoryEditor/AddStoryNode.vue';
-import ConnectStoryNode from './StoryEditor/ConnectStoryNode.vue';
-import DeleteStoryNode from './StoryEditor/DeleteStoryNode.vue';
-import ExportStory from './StoryEditor/ExportStory.vue';
-import ImportStory from './StoryEditor/ImportStory.vue';
-import StoryTextDump from './StoryView/StoryTextDump.vue';
-import StoryTreeView from './StoryView/StoryTreeView.vue';
-import StoryTree from './StoryTree.vue';
-import { story } from '@/services/Story';
-</script>
 
 <style scoped>
 .main-content {

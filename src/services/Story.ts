@@ -38,7 +38,7 @@ export function connectPages(
 export function deletePage(pageId: string): void {
   delete story.value[pageId];
   //Delete all paths to that node
-  for (const page in story) {
+  for (const page in story.value) {
     const currentPage: Page = story.value[page];
     for (const key in currentPage.Options) {
       if (currentPage.Options[key].Path === pageId) {

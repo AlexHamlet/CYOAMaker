@@ -1,34 +1,65 @@
 <script setup lang="ts">
 import { story } from '@/services/Story';
 import type { Page } from '@/types/StoryFile';
-import { computed } from 'vue';
+import { computed, ref } from 'vue';
 
 type Props = {
   page: Page;
   pageids: string[];
 };
-// defineProps<Props>();
 const props = defineProps<Props>();
 
+const emit = defineEmits(['response']);
+
+const breadcrumbs = computed(() => [...props.pageids, props.page.id]);
 const pages = computed(() => {
   return Object.values(props.page.Options)
     .filter((value) => !props.pageids.includes(value.Path))
     .map((value) => story.value[value.Path]);
 });
 
-const breadcrumbs = computed(() => [...props.pageids, props.page.id]);
+const expanded = ref(false);
+
+const BubblePage = (pageid: string) => {
+  emit('response', pageid);
+};
 </script>
 
 <template>
-  <li>
-    <h3>{{ page.Text }}</h3>
-    <ul>
+  <div class="container">
+    <button
+      v-if="pages.length"
+      @click="expanded = !expanded"
+    >
+      {{ expanded ? '-' : '+' }}
+    </button>
+    <h3 @click="BubblePage(page.id)">{{ page.id }}</h3>
+
+    <div v-show="expanded">
       <StoryTree
         v-for="item in pages"
+        @response="(selectedPageId: string) => BubblePage(selectedPageId)"
         :key="item.id"
         :page="item"
         :pageids="breadcrumbs"
       />
-    </ul>
-  </li>
+    </div>
+  </div>
 </template>
+
+<style scoped>
+h3 {
+  display: inline;
+}
+h3:hover {
+  color: blue;
+}
+
+button {
+  display: inline;
+}
+
+.container {
+  display: block;
+}
+</style>
