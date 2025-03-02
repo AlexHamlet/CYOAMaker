@@ -37,6 +37,7 @@ export function connectPages(
 
 export function deletePage(pageId: string): void {
   delete story.value[pageId];
+
   //Delete all paths to that node
   for (const page in story.value) {
     const currentPage: Page = story.value[page];
@@ -52,14 +53,37 @@ export function editPage(pageId: string, page: Page): void {
   story.value[pageId] = page;
 }
 
+export function getConnectedPages(page: Page): string[] {
+  const paths: string[] = [];
+
+  for (const key in page.Options) {
+    paths.push(page.Options[key].Path);
+  }
+
+  return paths;
+}
+
 export const allPages = computed((): string[] => {
   return Object.getOwnPropertyNames(story.value);
 });
 
-export function getConnectedPages(page: Page): string[] {
-  const paths: string[] = [];
-  Object.entries(page.Options).forEach(([selector, storyPath]) => {
-    paths.push(storyPath.Path);
-  });
-  return paths;
+export const orphanPages = computed((): string[] => {
+  return allPages.value.filter((x) => !usedPages.value.includes(x));
+});
+
+export const usedPages = computed((): string[] => {
+  if (!story.value['Start']) return [];
+  return usedPagesRecurse('Start', []);
+});
+
+function usedPagesRecurse(pageId: string, seenPages: string[]): string[] {
+  seenPages.push(pageId);
+  const options = story.value[pageId].Options;
+  for (const key in options) {
+    if (!seenPages.includes(options[key].Path)) {
+      seenPages.push(...usedPagesRecurse(options[key].Path, seenPages));
+    }
+  }
+
+  return seenPages;
 }

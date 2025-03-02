@@ -9,7 +9,7 @@
 
 <script setup lang="ts">
 import EditPage from './StoryEditor/EditPage.vue';
-import StoryTreeView from './StoryView/StoryTreeView.vue';
+import StoryTreeView from './Diagnostic/StoryTreeDump.vue';
 </script>
 
 <style scoped>

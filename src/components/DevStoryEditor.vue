@@ -1,10 +1,10 @@
 <script setup lang="ts">
+import StoryTextDump from './Diagnostic/StoryTextDump.vue';
 import AddStoryNode from './StoryEditor/AddStoryNode.vue';
 import ConnectStoryNode from './StoryEditor/ConnectStoryNode.vue';
 import DeleteStoryNode from './StoryEditor/DeleteStoryNode.vue';
 import ExportStory from './StoryEditor/ExportStory.vue';
 import ImportStory from './StoryEditor/ImportStory.vue';
-import StoryTextDump from './StoryView/StoryTextDump.vue';
 import StoryTree from './StoryTree.vue';
 import { story } from '@/services/Story';
 
