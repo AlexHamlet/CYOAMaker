@@ -84,13 +84,3 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
-div {
-  margin: 10px;
-}
-
-input,
-select,
-textarea {
-  display: block;
-}

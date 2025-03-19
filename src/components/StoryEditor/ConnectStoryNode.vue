@@ -12,14 +12,7 @@
       />
 
       <label for="fromNodeId">From Page:</label>
-      <select id="fromNodeId">
-        <option
-          v-for="page in allPages"
-          :key="page"
-        >
-          {{ page }}
-        </option>
-      </select>
+      <PageSelector id="fromNodeId" />
 
       <label for="toNodeId">To Page:</label>
       <select id="toNodeId">
@@ -46,6 +39,7 @@
 
 <script setup lang="ts">
 import { connectPages, allPages } from '@/services/Story';
+import PageSelector from './PageSelector.vue';
 
 function connectNode(event: Event): void {
   event.preventDefault();

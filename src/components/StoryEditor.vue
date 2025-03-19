@@ -1,33 +1,24 @@
-<template>
-  <div class="main-content">
-    <EditPage></EditPage>
-  </div>
-  <div class="sidebar">
-    <StoryTreeView></StoryTreeView>
-  </div>
-</template>
-
 <script setup lang="ts">
+import { ref } from 'vue';
+import { story } from '@/services/Story';
+import StoryTree from './StoryTree.vue';
 import EditPage from './StoryEditor/EditPage.vue';
-import StoryTreeView from './Diagnostic/StoryTreeDump.vue';
+
+const currentPageId = ref('Start');
+
+function catchPage(pageid: string) {
+  currentPageId.value = pageid;
+}
 </script>
 
-<style scoped>
-.main-content {
-  margin-left: 260px;
-  /* Pushes content right, should match sidebar width + padding */
-  padding: 20px;
-}
+<template>
+  <StoryTree
+    @response="(pageId: string) => catchPage(pageId)"
+    v-if="story.Start"
+    :page="story.Start"
+    :pageids="[]"
+  ></StoryTree>
+  <EditPage :pageid="currentPageId"></EditPage>
+</template>
 
-.sidebar {
-  margin: 0;
-  position: fixed;
-  left: 0;
-  top: 0;
-  width: 250px;
-  height: 100vh;
-  background: #f0f0f0;
-  overflow-y: auto;
-  border-right: 2px solid #ccc;
-}
-</style>
+<style scoped></style>

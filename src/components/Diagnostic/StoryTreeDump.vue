@@ -36,9 +36,4 @@ watchEffect(() => {
 });
 </script>
 
-<style scoped>
-textarea {
-  width: 100%;
-  height: 100%;
-}
-</style>
+<style scoped></style>

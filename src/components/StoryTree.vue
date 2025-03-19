@@ -48,7 +48,7 @@ const BubblePage = (pageid: string) => {
 </template>
 
 <style scoped>
-h3 {
+/* h3 {
   display: inline;
 }
 h3:hover {
@@ -61,5 +61,5 @@ button {
 
 .container {
   display: block;
-}
+} */
 </style>
