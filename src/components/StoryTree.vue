@@ -35,7 +35,10 @@ const BubblePage = (pageid: string) => {
     </button>
     <h3 @click="BubblePage(page.id)">{{ page.id }}</h3>
 
-    <div v-show="expanded">
+    <div
+      class="children"
+      v-show="expanded"
+    >
       <StoryTree
         v-for="item in pages"
         @response="(selectedPageId: string) => BubblePage(selectedPageId)"
@@ -48,7 +51,7 @@ const BubblePage = (pageid: string) => {
 </template>
 
 <style scoped>
-/* h3 {
+h3 {
   display: inline;
 }
 h3:hover {
@@ -61,5 +64,9 @@ button {
 
 .container {
   display: block;
-} */
+}
+
+.children {
+  margin-left: 10px;
+}
 </style>

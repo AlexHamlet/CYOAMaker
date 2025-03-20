@@ -12,15 +12,10 @@ const props = defineProps<Props>();
 
 const selector = ref(props.storyPath.Selector);
 const text = ref(props.storyPath.Text);
-// const path = ref(props.storyPath.Path);
+const path = ref(props.storyPath.Path);
 
 const SaveConnection = () => {
-  editConnection(
-    props.pageid,
-    props.storyPath.Selector,
-    props.storyPath.Path,
-    props.storyPath.Text,
-  );
+  editConnection(props.pageid, selector.value, path.value, text.value);
 };
 
 const DeleteConnection = () => {
@@ -34,7 +29,7 @@ const DeleteConnection = () => {
     type="text"
     v-model="text"
   />
-  <PageSelector />
+  <PageSelector @value="(val) => (path = val)" />
   <button v-on:click="SaveConnection">Save</button>
   <button v-on:click="DeleteConnection">Delete</button>
 </template>

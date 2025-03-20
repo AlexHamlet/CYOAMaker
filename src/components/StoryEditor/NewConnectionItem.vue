@@ -14,20 +14,25 @@ const path = ref('');
 
 const AddConnection = () => {
   connectPages(props.pageid, path.value, selector.value, text.value);
+  selector.value = '';
+  text.value = '';
+  path.value = '';
 };
 </script>
 
 <template>
-  <input
-    type="text"
-    v-model="selector"
-  />
-  <input
-    type="text"
-    v-model="text"
-  />
-  <PageSelector />
-  <button v-on:click="AddConnection">Add</button>
+  <div>
+    <input
+      type="text"
+      v-model="selector"
+    />
+    <input
+      type="text"
+      v-model="text"
+    />
+    <PageSelector @value="(val) => (path = val)" />
+    <button v-on:click="AddConnection">Add</button>
+  </div>
 </template>
 
 <style scoped></style>
