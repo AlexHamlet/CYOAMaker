@@ -29,7 +29,10 @@ const DeleteConnection = () => {
     type="text"
     v-model="text"
   />
-  <PageSelector @value="(val) => (path = val)" />
+  <PageSelector
+    :optionPath="props.storyPath.Path"
+    @value="(val) => (path = val)"
+  />
   <button v-on:click="SaveConnection">Save</button>
   <button v-on:click="DeleteConnection">Delete</button>
 </template>

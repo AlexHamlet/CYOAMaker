@@ -2,12 +2,12 @@
 import { allPages } from '@/services/Story';
 import { ref } from 'vue';
 
-// type Props = {
-//   pageId: string;
-// };
-// const props = defineProps<Props>();
+type Props = {
+  optionPath: string;
+};
+const props = defineProps<Props>();
 
-const value = ref('');
+const value = ref(props.optionPath);
 const selectedValue = defineEmits(['value']);
 </script>
 
