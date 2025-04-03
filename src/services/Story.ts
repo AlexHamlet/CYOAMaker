@@ -2,7 +2,7 @@ import { computed, ref } from 'vue';
 import type { Page, StoryFile, StoryPath } from '../types/StoryFile';
 
 export const storyName = 'placeholder';
-export const story = ref<StoryFile>({});
+export const story = ref<StoryFile>({ Start: { id: 'Start', Text: 'Start', Options: {} } });
 
 //Import
 export function setStory(storyName: string, storyFile: StoryFile) {
