@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { connectPages } from '@/services/Story';
 import { ref } from 'vue';
-import PageSelector from './PageSelector.vue';
+import PageSelector from '../PageSelector.vue';
 
 type Props = {
   pageid: string;

@@ -3,8 +3,8 @@ import { ref, watch } from 'vue';
 import { MdEditor } from 'md-editor-v3';
 import 'md-editor-v3/lib/style.css';
 import { changePageId, story } from '@/services/Story';
-import ConnectionItem from './ConnectionItem.vue';
-import NewConnectionItem from './NewConnectionItem.vue';
+import ConnectionItem from './connections/ConnectionItem.vue';
+import NewConnectionItem from './connections/NewConnectionItem.vue';
 
 type Props = {
   pageid: string;
@@ -34,7 +34,7 @@ watch(props, (newprops) => {
 </script>
 
 <template>
-  <div v-if="story[editpageid] !== undefined">
+  <div>
     <input
       type="text"
       v-model="title"
@@ -46,13 +46,6 @@ watch(props, (newprops) => {
     />
     <button v-on:click="SaveChanges">Save</button>
     <button v-on:click="DiscardChanges">Discard</button>
-    <ConnectionItem
-      :key="connection.Selector"
-      v-for="connection in story[editpageid].Options"
-      :pageid="editpageid"
-      :story-path="connection"
-    ></ConnectionItem>
-    <NewConnectionItem :pageid="editpageid" />
   </div>
 </template>
 

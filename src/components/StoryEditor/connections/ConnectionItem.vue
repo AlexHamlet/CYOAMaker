@@ -2,7 +2,7 @@
 import { deleteConnection, editConnection } from '@/services/Story';
 import type { StoryPath } from '@/types/StoryFile';
 import { ref } from 'vue';
-import PageSelector from './PageSelector.vue';
+import PageSelector from '../PageSelector.vue';
 
 type Props = {
   pageid: string;
