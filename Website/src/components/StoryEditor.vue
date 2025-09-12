@@ -15,12 +15,8 @@ function catchPage(pageid: string) {
 </script>
 
 <template>
-  <StoryTree
-    @response="(pageId: string) => catchPage(pageId)"
-    v-if="story.Start"
-    :page="story.Start"
-    :pageids="[]"
-  ></StoryTree>
+  <StoryTree @response="(pageId: string) => catchPage(pageId)" v-if="story.Start" :page="story.Start" :pageids="[]">
+  </StoryTree>
   <UnreachablePages @response="(pageId: string) => catchPage(pageId)"></UnreachablePages>
   <EditPage :pageid="currentPageId"></EditPage>
   <ConnectionManager :pageid="currentPageId"></ConnectionManager>

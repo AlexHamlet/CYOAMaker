@@ -23,14 +23,15 @@ watch(props, (newprops) => {
 
 <template>
   <div>
-    <ConnectionItem
-      :key="connection.Selector"
-      v-for="connection in story[editpageid].Options"
-      :pageid="editpageid"
-      :story-path="connection"
-    ></ConnectionItem>
+    <ConnectionItem :key="connection.Selector" v-for="connection in story[editpageid].Options" :pageid="editpageid"
+      :story-path="connection"></ConnectionItem>
     <NewConnectionItem :pageid="editpageid" />
   </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+div {
+  border-style: solid;
+  border-color: green;
+}
+</style>

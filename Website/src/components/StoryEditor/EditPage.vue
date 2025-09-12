@@ -1,10 +1,7 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue';
-import { MdEditor } from 'md-editor-v3';
 import 'md-editor-v3/lib/style.css';
 import { changePageId, story } from '@/services/Story';
-import ConnectionItem from './connections/ConnectionItem.vue';
-import NewConnectionItem from './connections/NewConnectionItem.vue';
 
 type Props = {
   pageid: string;
@@ -34,19 +31,33 @@ watch(props, (newprops) => {
 </script>
 
 <template>
-  <div>
-    <input
-      type="text"
-      v-model="title"
-    />
-    <MdEditor
-      language="en-us"
-      v-model="text"
-      class="PageContentEditor"
-    />
-    <button v-on:click="SaveChanges">Save</button>
-    <button v-on:click="DiscardChanges">Discard</button>
+  <div class="card">
+    <input class="title" type="text" v-model="title" />
+    <textarea class="pageBody" type="textbox" v-model="text"></textarea>
+    <div class="save-discard">
+      <button v-on:click="SaveChanges">Save</button>
+      <button v-on:click="DiscardChanges">Discard</button>
+    </div>
   </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+div {
+  border-style: solid;
+  border-color: yellow;
+}
+
+.title {
+  width: 100%;
+}
+
+.pageBody {
+  width: 100%;
+  height: 20em;
+  resize: none;
+}
+
+.save-discard>button {
+  width: 50%;
+}
+</style>

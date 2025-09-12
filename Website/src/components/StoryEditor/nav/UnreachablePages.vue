@@ -6,19 +6,22 @@ const emit = defineEmits(['response']);
 
 <template>
   <div class="container">
-    <div
-      v-bind:key="page"
-      v-for="page in orphanPages"
-    >
+    <div v-bind:key="page" v-for="page in orphanPages">
       <h3 v-on:click="emit('response', page)">{{ page }}</h3>
     </div>
   </div>
 </template>
 
 <style scoped>
+div {
+  border-style: solid;
+  border-color: orange;
+}
+
 h3 {
   display: inline;
 }
+
 h3:hover {
   color: blue;
 }

@@ -12,12 +12,24 @@ const createPage = () => {
 
 <template>
   <div>
-    <input
-      v-model="title"
-      type="text"
-    />
-    <button @click="createPage()">Add Page</button>
+    <input class="pageName" v-model="title" type="text" placeholder="New Page Name" />
+    <button class="add" @click="createPage()">Add Page</button>
   </div>
 </template>
 
-<style scoped></style>
+<style scoped>
+div {
+  border-style: solid;
+  border-color: blue;
+}
+
+.pageName {
+  width: 74%;
+  margin: 0;
+}
+
+.add {
+  width: 25%;
+  margin: 0;
+}
+</style>

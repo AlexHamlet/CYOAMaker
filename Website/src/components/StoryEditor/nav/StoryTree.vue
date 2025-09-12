@@ -27,33 +27,28 @@ const BubblePage = (pageid: string) => {
 
 <template>
   <div class="container">
-    <button
-      v-if="pages.length"
-      @click="expanded = !expanded"
-    >
+    <button v-if="pages.length" @click="expanded = !expanded">
       {{ expanded ? '-' : '+' }}
     </button>
     <h3 @click="BubblePage(page.id)">{{ page.id }}</h3>
 
-    <div
-      class="children"
-      v-show="expanded"
-    >
-      <StoryTree
-        v-for="item in pages"
-        @response="(selectedPageId: string) => BubblePage(selectedPageId)"
-        :key="item.id"
-        :page="item"
-        :pageids="breadcrumbs"
-      />
+    <div class="children" v-show="expanded">
+      <StoryTree v-for="item in pages" @response="(selectedPageId: string) => BubblePage(selectedPageId)" :key="item.id"
+        :page="item" :pageids="breadcrumbs" />
     </div>
   </div>
 </template>
 
 <style scoped>
+div {
+  border-style: solid;
+  border-color: red;
+}
+
 h3 {
   display: inline;
 }
+
 h3:hover {
   color: blue;
 }
