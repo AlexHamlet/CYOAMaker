@@ -1,0 +1,46 @@
+<script setup lang="ts">
+type ApplicationPaneProps = {
+  title: string;
+};
+defineProps<ApplicationPaneProps>();
+</script>
+
+<template>
+  <div class="application-pane">
+    <div class="title">
+      <span>{{ title }}</span>
+      <span class="right">
+        <slot name="action1"></slot>
+        <slot name="action2"></slot>
+      </span>
+    </div>
+    <div class="content">
+      <slot> </slot>
+    </div>
+  </div>
+</template>
+
+<style scoped>
+.application-pane {
+  overflow: hidden;
+}
+
+.title {
+  background-color: rgba(0, 0, 0, 0.25);
+  color: white;
+  padding: 0 0.5rem;
+  position: relative;
+}
+
+.title .right {
+  position: absolute;
+  right: 0;
+}
+
+.content {
+  overflow: auto;
+  height: calc(100% - 1.5rem);
+  max-height: calc(100% - 1.5rem);
+  border: 4px solid rgba(255, 255, 255, 0.5);
+}
+</style>

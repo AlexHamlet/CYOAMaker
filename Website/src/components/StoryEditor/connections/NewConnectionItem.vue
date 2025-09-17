@@ -22,9 +22,20 @@ const AddConnection = () => {
 
 <template>
   <div>
-    <input type="text" placeholder="Action" v-model="selector" />
-    <input type="text" placeholder="Description" v-model="text" />
-    <PageSelector :option-path="'Start'" @value="(val) => (path = val)" />
+    <input
+      type="text"
+      placeholder="Action"
+      v-model="selector"
+    />
+    <input
+      type="text"
+      placeholder="Description"
+      v-model="text"
+    />
+    <PageSelector
+      :option-path="'Start'"
+      @value="(val) => (path = val)"
+    />
     <button v-on:click="AddConnection">Add</button>
   </div>
 </template>

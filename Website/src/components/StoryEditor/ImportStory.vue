@@ -16,17 +16,29 @@ function importStoryButton(): void {
 </script>
 
 <template>
-  <div>
-    <form @submit.prevent="importStoryButton">
-      <h3>Import</h3>
-      <input type="file" id="storyFile" name="storyFile" accept=".json" @change="importStoryButton" />
-    </form>
-  </div>
+  <form @submit.prevent="importStoryButton">
+    <label>
+      <span>Import</span>
+      <input
+        type="file"
+        id="storyFile"
+        name="storyFile"
+        accept=".json"
+        @change="importStoryButton"
+      />
+    </label>
+  </form>
 </template>
 
 <style scoped>
-div {
-  border-style: solid;
-  border-color: purple;
+label {
+  display: block;
+  padding: 0 0.5em;
+  background-color: purple;
+  border-left: 4px solid green;
+}
+
+input {
+  display: none;
 }
 </style>

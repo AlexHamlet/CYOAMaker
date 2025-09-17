@@ -3,6 +3,7 @@ import type { Page, StoryFile, StoryPath } from '../types/StoryFile';
 
 export const storyName = 'placeholder';
 export const story = ref<StoryFile>({ Start: { id: 'Start', Text: 'Start', Options: {} } });
+export const currentPageId = ref('Start');
 
 //Import
 export function setStory(storyName: string, storyFile: StoryFile) {

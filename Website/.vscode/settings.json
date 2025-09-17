@@ -1,5 +1,5 @@
 {
-  "prettier.configPath": "",
+  "prettier.configPath": ".prettierrc.json",
   "explorer.fileNesting.enabled": true,
   "explorer.fileNesting.patterns": {
     "tsconfig.json": "tsconfig.*.json, env.d.ts",
@@ -16,6 +16,9 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[vue]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescriptvue]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   }
 }

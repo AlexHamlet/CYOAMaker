@@ -1,23 +1,24 @@
 <script setup lang="ts">
-import { orphanPages } from '@/services/Story';
+import ApplicationPane from '@/components/ApplicationPane.vue';
+import { currentPageId, orphanPages } from '@/services/Story';
 
-const emit = defineEmits(['response']);
+const setCurrentPage = (pageId: string) => {
+  currentPageId.value = pageId;
+};
 </script>
 
 <template>
-  <div class="container">
-    <div v-bind:key="page" v-for="page in orphanPages">
-      <h3 v-on:click="emit('response', page)">{{ page }}</h3>
+  <ApplicationPane title="Unreachable Pages">
+    <div
+      v-bind:key="pageId"
+      v-for="pageId in orphanPages"
+    >
+      <h3 v-on:click="setCurrentPage(pageId)">{{ pageId }}</h3>
     </div>
-  </div>
+  </ApplicationPane>
 </template>
 
 <style scoped>
-div {
-  border-style: solid;
-  border-color: orange;
-}
-
 h3 {
   display: inline;
 }

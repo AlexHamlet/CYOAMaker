@@ -12,8 +12,18 @@ const createPage = () => {
 
 <template>
   <div>
-    <input class="pageName" v-model="title" type="text" placeholder="New Page Name" />
-    <button class="add" @click="createPage()">Add Page</button>
+    <input
+      class="pageName"
+      v-model="title"
+      type="text"
+      placeholder="New Page Name"
+    />
+    <button
+      class="add"
+      @click="createPage()"
+    >
+      Add Page
+    </button>
   </div>
 </template>
 
