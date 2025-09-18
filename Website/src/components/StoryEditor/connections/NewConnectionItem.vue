@@ -1,19 +1,18 @@
 <script setup lang="ts">
-import { connectPages } from '@/services/Story';
+import { connectPages, currentPageId } from '@/services/Story';
 import { ref } from 'vue';
 import PageSelector from '../PageSelector.vue';
-
-type Props = {
-  pageid: string;
-};
-const props = defineProps<Props>();
 
 const selector = ref('');
 const text = ref('');
 const path = ref('');
 
 const AddConnection = () => {
-  connectPages(props.pageid, path.value, selector.value, text.value);
+  if (currentPageId.value == '') {
+    alert('Click on a page to begin editing.');
+    return;
+  }
+  connectPages(currentPageId.value, path.value, selector.value, text.value);
   selector.value = '';
   text.value = '';
   path.value = '';

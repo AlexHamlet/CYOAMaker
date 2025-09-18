@@ -24,7 +24,7 @@ watch(currentPageId, () => {
       :pageid="currentPageId"
       :story-path="connection"
     ></ConnectionItem>
-    <NewConnectionItem :pageid="currentPageId" />
+    <NewConnectionItem />
   </ApplicationPane>
 </template>
 

@@ -11,7 +11,10 @@ const title = ref('Getting Started');
 const text = ref('Click on a page to begin editing.');
 
 const SaveChanges = () => {
-  if (currentPageId.value == '') return;
+  if (currentPageId.value == '') {
+    alert('Click on a page to begin editing.');
+    return;
+  }
   if (title.value == '') {
     alert('All pages must have a Title');
     return;
@@ -22,7 +25,10 @@ const SaveChanges = () => {
 };
 
 const DiscardChanges = () => {
-  if (currentPageId.value == '') return;
+  if (currentPageId.value == '') {
+    alert('Click on a page to begin editing.');
+    return;
+  }
   title.value = currentPageId.value;
   text.value = getPage(currentPageId.value).Text;
 };
