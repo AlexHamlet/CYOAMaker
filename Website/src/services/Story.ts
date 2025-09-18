@@ -1,8 +1,23 @@
 import { computed, ref } from 'vue';
 import type { Page, StoryFile, StoryPath } from '../types/StoryFile';
 
-export const story = ref<StoryFile>({ Start: { id: 'Start', Text: 'Start', Options: {} } });
-export const currentPageId = ref('Start');
+const defaultPage: Page = {
+  id: 'Click a page to get started',
+  Text: 'Click a page to get started',
+  Options: {},
+};
+const story = ref<StoryFile>({ Start: { id: 'Start', Text: 'Start', Options: {} } });
+export const currentPageId = ref('');
+
+//Getters
+export function getStory(): StoryFile {
+  return story.value;
+}
+
+export function getPage(pageId: string): Page {
+  if (!story.value[pageId]) return defaultPage;
+  return story.value[pageId];
+}
 
 //Import
 export function setStory(storyFile: StoryFile) {
@@ -15,6 +30,10 @@ export function setStory(storyFile: StoryFile) {
 
 //Additions
 export function uiAddPage(pageId: string, pageText: string): void {
+  if (pageId == '') {
+    alert('Ensure you have named the page.');
+    return;
+  }
   if (pageId in story.value) {
     if (confirm(pageId + ' already exists.  Are you sure you want to overwrite it?'))
       addPage(pageId, pageText);
@@ -80,6 +99,7 @@ export function deleteConnection(pageid: string, connectionSelector: string) {
 //Edits
 export function changePageId(pageId: string, newPageId: string) {
   if (pageId == newPageId) return;
+  if (pageId == '') return;
 
   story.value[newPageId] = story.value[pageId];
   story.value[newPageId].id = newPageId;
@@ -95,7 +115,11 @@ export function changePageId(pageId: string, newPageId: string) {
   }
 }
 
-export function editPage(pageId: string, page: Page): void {
+export function setPageText(pageId: string, pageText: string): void {
+  story.value[pageId].Text = pageText;
+}
+
+export function setPage(pageId: string, page: Page): void {
   story.value[pageId] = page;
 }
 

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { story, currentPageId, uiDeletePage } from '@/services/Story';
+import { currentPageId, getPage, uiDeletePage } from '@/services/Story';
 import type { Page } from '@/types/StoryFile';
 import { computed, ref } from 'vue';
 
@@ -13,7 +13,7 @@ const breadcrumbs = computed(() => [...props.pageids, props.page.id]);
 const pages = computed(() => {
   return Object.values(props.page.Options)
     .filter((value) => !props.pageids.includes(value.Path))
-    .map((value) => story.value[value.Path]);
+    .map((value) => getPage(value.Path));
 });
 
 const expanded = ref(false);

@@ -1,4 +1,4 @@
-import { story, setStory } from './Story';
+import { allPages, currentPageId, getStory, setStory } from './Story';
 import type { StoryFile } from '../types/StoryFile';
 
 export let storyName = 'placeholder';
@@ -12,6 +12,7 @@ export function importStory(name: string, storyFile: File): void {
     const storyContents: StoryFile = JSON.parse(contents);
     storyName = name;
     setStory(storyContents);
+    currentPageId.value = '';
   };
 
   reader.onerror = () => {
@@ -22,12 +23,12 @@ export function importStory(name: string, storyFile: File): void {
 }
 
 export function exportStory(): void {
-  if (story.value['Start'] == null) {
+  if (!('Start' in allPages)) {
     alert("Story must contain a page named 'Start'");
     return;
   }
 
-  const blobData = JSON.stringify(story.value);
+  const blobData = JSON.stringify(getStory);
   const blob = new Blob([blobData]);
   const a = document.createElement('a');
 

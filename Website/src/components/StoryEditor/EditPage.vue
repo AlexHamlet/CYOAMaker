@@ -1,28 +1,36 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue';
 import 'md-editor-v3/lib/style.css';
-import { changePageId, currentPageId, story } from '@/services/Story';
+import { changePageId, currentPageId, getPage, setPageText } from '@/services/Story';
 import ApplicationPane from '../ApplicationPane.vue';
 import ExportStory from './ExportStory.vue';
 import ImportStory from './ImportStory.vue';
+import type { Page } from '@/types/StoryFile';
 
-const text = ref('Hello');
-const title = ref('Hello');
+const title = ref('Getting Started');
+const text = ref('Click on a page to begin editing.');
 
 const SaveChanges = () => {
+  if (currentPageId.value == '') return;
+  if (title.value == '') {
+    alert('All pages must have a Title');
+    return;
+  }
   changePageId(currentPageId.value, title.value);
   currentPageId.value = title.value;
-  story.value[currentPageId.value].Text = text.value;
+  setPageText(currentPageId.value, text.value);
 };
 
 const DiscardChanges = () => {
+  if (currentPageId.value == '') return;
   title.value = currentPageId.value;
-  text.value = story.value[currentPageId.value].Text;
+  text.value = getPage(currentPageId.value).Text;
 };
 
 watch(currentPageId, () => {
-  title.value = story.value[currentPageId.value].id;
-  text.value = story.value[currentPageId.value].Text;
+  const newpage: Page = getPage(currentPageId.value);
+  title.value = newpage.id;
+  text.value = newpage.Text;
 });
 </script>
 

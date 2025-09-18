@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { story } from '@/services/Story';
 import ApplicationPane from '@/components/ApplicationPane.vue';
 import StoryTreeNode from './StoryTreeNode.vue';
 import AddPage from '../AddPage.vue';
+import { getPage } from '@/services/Story';
 </script>
 
 <template>
@@ -11,8 +11,7 @@ import AddPage from '../AddPage.vue';
       <AddPage />
     </template>
     <StoryTreeNode
-      v-if="story.Start"
-      :page="story.Start"
+      :page="getPage('Start')"
       :pageids="[]"
     ></StoryTreeNode>
   </ApplicationPane>
