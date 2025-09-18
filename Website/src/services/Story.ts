@@ -1,16 +1,26 @@
 import { computed, ref } from 'vue';
 import type { Page, StoryFile, StoryPath } from '../types/StoryFile';
 
-export const storyName = 'placeholder';
 export const story = ref<StoryFile>({ Start: { id: 'Start', Text: 'Start', Options: {} } });
 export const currentPageId = ref('Start');
 
 //Import
-export function setStory(storyName: string, storyFile: StoryFile) {
+export function setStory(storyFile: StoryFile) {
   story.value = storyFile;
+  if (!('Start' in story.value)) {
+    addPage('Start', 'First page of the story');
+  }
+  currentPageId.value = 'Start';
 }
 
 //Additions
+export function uiAddPage(pageId: string, pageText: string): void {
+  if (pageId in story.value) {
+    if (confirm(pageId + ' already exists.  Are you sure you want to overwrite it?'))
+      addPage(pageId, pageText);
+  } else addPage(pageId, pageText);
+}
+
 export function addPage(pageId: string, pageText: string): void {
   //Ensure there is a start to the story
   if (Object.keys(story).length == 0) pageId = 'Start';
@@ -28,7 +38,7 @@ export function connectPages(
   toNodeId: string,
   nodeSelector: string,
   connectionFlavorText: string,
-) {
+): void {
   const fromPage: Page = story.value[fromNodeId];
   const connection: StoryPath = {
     Selector: nodeSelector,
@@ -40,6 +50,8 @@ export function connectPages(
 
 //Deletions
 export function deletePage(pageId: string): void {
+  if (pageId == 'Start') return;
+
   delete story.value[pageId];
 
   //Delete all paths to that node
@@ -51,6 +63,14 @@ export function deletePage(pageId: string): void {
       }
     }
   }
+}
+
+export function uiDeletePage(pageId: string): void {
+  if (pageId == 'Start') {
+    alert('Cannot delete Start page, this is where the story must begin.');
+    return;
+  }
+  if (confirm('Are you sure you want to permanently delete this page?') == true) deletePage(pageId);
 }
 
 export function deleteConnection(pageid: string, connectionSelector: string) {

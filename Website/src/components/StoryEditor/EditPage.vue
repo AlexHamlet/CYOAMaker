@@ -61,7 +61,7 @@ watch(currentPageId, () => {
 
 .pageBody {
   width: 100%;
-  height: 20em;
+  height: 70%;
   resize: none;
 }
 

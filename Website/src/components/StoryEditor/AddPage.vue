@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { ref } from 'vue';
-import { addPage } from '@/services/Story';
+import { uiAddPage } from '@/services/Story';
 
 const title = ref('');
 
 const createPage = () => {
-  addPage(title.value, '');
+  uiAddPage(title.value, '');
   title.value = '';
 };
 </script>
@@ -22,17 +22,12 @@ const createPage = () => {
       class="add"
       @click="createPage()"
     >
-      Add Page
+      Add
     </button>
   </div>
 </template>
 
 <style scoped>
-div {
-  border-style: solid;
-  border-color: blue;
-}
-
 .pageName {
   width: 74%;
   margin: 0;

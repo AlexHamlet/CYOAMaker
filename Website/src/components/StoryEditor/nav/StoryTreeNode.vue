@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { story, currentPageId } from '@/services/Story';
+import { story, currentPageId, uiDeletePage } from '@/services/Story';
 import type { Page } from '@/types/StoryFile';
 import { computed, ref } from 'vue';
 
@@ -21,6 +21,10 @@ const expanded = ref(false);
 const setCurrentPage = (pageid: string) => {
   currentPageId.value = pageid;
 };
+
+const StoryTreeDeletePage = (pageid: string) => {
+  uiDeletePage(pageid);
+};
 </script>
 
 <template>
@@ -36,6 +40,12 @@ const setCurrentPage = (pageid: string) => {
       @click="setCurrentPage(page.id)"
     >
       {{ page.id }}
+    </button>
+    <button
+      class="page-delete"
+      @click="StoryTreeDeletePage(page.id)"
+    >
+      X
     </button>
 
     <div

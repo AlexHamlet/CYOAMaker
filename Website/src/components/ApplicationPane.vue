@@ -21,6 +21,10 @@ defineProps<ApplicationPaneProps>();
 </template>
 
 <style scoped>
+slot {
+  display: inline;
+}
+
 .application-pane {
   overflow: hidden;
 }
@@ -35,6 +39,7 @@ defineProps<ApplicationPaneProps>();
 .title .right {
   position: absolute;
   right: 0;
+  max-width: 50%;
 }
 
 .content {

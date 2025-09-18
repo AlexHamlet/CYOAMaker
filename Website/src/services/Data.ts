@@ -1,5 +1,7 @@
-import { storyName, story, setStory } from './Story';
+import { story, setStory } from './Story';
 import type { StoryFile } from '../types/StoryFile';
+
+export let storyName = 'placeholder';
 
 export function importStory(name: string, storyFile: File): void {
   const reader = new FileReader();
@@ -8,7 +10,8 @@ export function importStory(name: string, storyFile: File): void {
     const contents = reader.result as string;
     console.log('File contents:', contents);
     const storyContents: StoryFile = JSON.parse(contents);
-    setStory(name, storyContents);
+    storyName = name;
+    setStory(storyContents);
   };
 
   reader.onerror = () => {

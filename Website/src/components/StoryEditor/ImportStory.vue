@@ -32,7 +32,7 @@ function importStoryButton(): void {
 
 <style scoped>
 label {
-  display: block;
+  display: inline-block;
   padding: 0 0.5em;
   background-color: purple;
   border-left: 4px solid green;

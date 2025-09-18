@@ -27,9 +27,4 @@ watch(currentPageId, () => {
   </ApplicationPane>
 </template>
 
-<style scoped>
-div {
-  border-style: solid;
-  border-color: green;
-}
-</style>
+<style scoped></style>
