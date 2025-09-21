@@ -34,8 +34,8 @@ function importStoryButton(): void {
 label {
   display: inline-block;
   padding: 0 0.5em;
-  background-color: purple;
-  border-left: 4px solid green;
+  background-color: var(--secondary-color);
+  border-left: 4px solid var(--highlight-color);
 }
 
 input {

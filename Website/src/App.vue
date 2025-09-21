@@ -25,7 +25,7 @@ import UnreachablePages from './components/StoryEditor/nav/UnreachablePages.vue'
   left: 0;
   width: 400px;
   height: 50dvh;
-  background-color: aqua;
+  background-color: var(--primary-color);
 }
 
 .unreachable-pages {
@@ -34,7 +34,7 @@ import UnreachablePages from './components/StoryEditor/nav/UnreachablePages.vue'
   left: 0;
   width: 400px;
   height: 50dvh;
-  background-color: red;
+  background-color: var(--primary-color);
 }
 
 .connection-manager {
@@ -43,7 +43,7 @@ import UnreachablePages from './components/StoryEditor/nav/UnreachablePages.vue'
   right: 0;
   width: calc(100dvw - 400px);
   height: 30dvh;
-  background-color: purple;
+  background-color: var(--primary-color);
 }
 
 .page-editor {
@@ -52,6 +52,6 @@ import UnreachablePages from './components/StoryEditor/nav/UnreachablePages.vue'
   right: 0;
   width: calc(100dvw - 400px);
   height: 70dvh;
-  background-color: yellow;
+  background-color: var(--primary-color);
 }
 </style>

@@ -1,3 +1,10 @@
+:root {
+  --primary-color: #829460;
+  --secondary-color: #674747;
+  --highlight-color: #f96666;
+  --textbox-color: #cccccc;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -19,4 +26,10 @@ html {
 
 button {
   padding: 0 0.5em;
+}
+
+input[type='text'],
+button,
+textarea {
+  background-color: var(--textbox-color);
 }

@@ -47,8 +47,6 @@ watch(currentPageId, () => {
   >
     <template v-slot:action1>
       <ImportStory />
-    </template>
-    <template v-slot:action2>
       <ExportStory />
     </template>
     <input
@@ -69,6 +67,11 @@ watch(currentPageId, () => {
 </template>
 
 <style scoped>
+form,
+label {
+  display: inline;
+}
+
 .title {
   width: 100%;
 }

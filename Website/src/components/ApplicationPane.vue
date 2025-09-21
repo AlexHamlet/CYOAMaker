@@ -11,7 +11,6 @@ defineProps<ApplicationPaneProps>();
       <span>{{ title }}</span>
       <span class="right">
         <slot name="action1"></slot>
-        <slot name="action2"></slot>
       </span>
     </div>
     <div class="content">
@@ -30,7 +29,8 @@ slot {
 }
 
 .title {
-  background-color: rgba(0, 0, 0, 0.25);
+  background-color: var(--secondary-color);
+  /* background-color: rgba(var(--secondary-color), 0.25); */
   color: white;
   padding: 0 0.5rem;
   position: relative;
@@ -46,6 +46,7 @@ slot {
   overflow: auto;
   height: calc(100% - 1.5rem);
   max-height: calc(100% - 1.5rem);
-  border: 4px solid rgba(255, 255, 255, 0.5);
+  border: 4px solid var(--secondary-color);
+  /* border: 4px solid rgba(255, 255, 255, 0.5); */
 }
 </style>
