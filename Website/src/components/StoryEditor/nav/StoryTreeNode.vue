@@ -29,12 +29,15 @@ const StoryTreeDeletePage = (pageid: string) => {
 
 <template>
   <div class="story-tree-node">
-    <button
-      v-if="pages.length"
-      @click="expanded = !expanded"
-    >
-      {{ expanded ? '-' : '+' }}
-    </button>
+    <span class="expand-holder">
+      <button
+        class="expand"
+        v-if="pages.length"
+        @click="expanded = !expanded"
+      >
+        {{ expanded ? '-' : '+' }}
+      </button>
+    </span>
     <button
       class="page-title"
       @click="setCurrentPage(page.id)"
@@ -42,7 +45,7 @@ const StoryTreeDeletePage = (pageid: string) => {
       {{ page.id }}
     </button>
     <button
-      class="page-delete"
+      class="delete"
       @click="StoryTreeDeletePage(page.id)"
     >
       X
@@ -72,8 +75,39 @@ const StoryTreeDeletePage = (pageid: string) => {
   color: blue;
 }
 
+.delete {
+  border: none;
+  color: var(--highlight-color);
+  background-color: inherit;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.delete:hover {
+  background: #eee;
+}
+
+.expand {
+  width: 1.5rem;
+  border: none;
+  background-color: inherit;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.expand-holder {
+  min-width: 1.5rem;
+  min-height: 0.1rem;
+  display: inline-block;
+}
+
+.expand:hover {
+  background: #eee;
+}
+
 button {
   display: inline;
+  min-width: 0.5rem;
 }
 
 .container {
@@ -81,6 +115,10 @@ button {
 }
 
 .children {
-  margin-left: 10px;
+  margin-left: 1rem;
+}
+
+.story-tree-node {
+  text-wrap: nowrap;
 }
 </style>

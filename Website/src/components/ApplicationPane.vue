@@ -39,7 +39,7 @@ slot {
 .title .right {
   position: absolute;
   right: 0;
-  max-width: 50%;
+  max-width: 65%;
 }
 
 .content {

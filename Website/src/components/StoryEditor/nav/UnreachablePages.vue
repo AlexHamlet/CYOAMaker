@@ -14,10 +14,11 @@ const UnreachablePagesDeletePage = (pageId: string) => {
 <template>
   <ApplicationPane title="Unreachable Pages">
     <div
+      class="page"
       v-bind:key="pageId"
       v-for="pageId in orphanPages"
     >
-      <h3 v-on:click="setCurrentPage(pageId)">{{ pageId }}</h3>
+      <button @click="setCurrentPage(pageId)">{{ pageId }}</button>
       <button
         class="delete"
         @click="UnreachablePagesDeletePage(pageId)"
@@ -29,15 +30,23 @@ const UnreachablePagesDeletePage = (pageId: string) => {
 </template>
 
 <style scoped>
-h3 {
-  display: inline;
+.delete {
+  border: none;
+  color: var(--highlight-color);
+  background-color: inherit;
+  cursor: pointer;
+  display: inline-block;
 }
 
-h3:hover {
-  color: blue;
+.delete:hover {
+  background: #eee;
 }
 
 .container {
   display: block;
+}
+
+.page {
+  text-wrap: nowrap;
 }
 </style>
