@@ -6,7 +6,7 @@ const defaultPage: Page = {
   Text: 'Click a page to get started',
   Options: {},
 };
-export const story = ref<StoryFile>({ Start: { id: 'Start', Text: 'Start', Options: {} } });
+const story = ref<StoryFile>({ Start: { id: 'Start', Text: 'Start', Options: {} } });
 export const currentPageId = ref('');
 
 //Getters

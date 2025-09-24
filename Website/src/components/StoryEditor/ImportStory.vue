@@ -10,8 +10,9 @@ function importStoryButton(): void {
   }
 
   const file = fileInput.files[0];
+  const filename = file.name.replace('.json', '');
 
-  importStory(file.name, file);
+  importStory(filename, file);
 }
 </script>
 

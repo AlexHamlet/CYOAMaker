@@ -1,7 +1,7 @@
 import { allPages, currentPageId, getStory, setStory } from './Story';
 import type { StoryFile } from '../types/StoryFile';
 
-export let storyName = 'placeholder';
+export let storyName = 'StoryFile';
 
 export function importStory(name: string, storyFile: File): void {
   const reader = new FileReader();
