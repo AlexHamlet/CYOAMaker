@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, watch } from 'vue';
+import { computed, ref, watch } from 'vue';
 import 'md-editor-v3/lib/style.css';
 import { changePageId, currentPageId, getPage, setPageText } from '@/services/Story';
 import ApplicationPane from '../ApplicationPane.vue';
@@ -9,7 +9,14 @@ import type { Page } from '@/types/StoryFile';
 
 const title = ref('Getting Started');
 const text = ref('Click on a page to begin editing.');
-
+const hasUnsavedTitleChanges = computed(() => {
+  if (currentPageId.value === '') return false;
+  return title.value !== currentPageId.value ? true : false;
+});
+const hasUnsavedBodyChanges = computed(() => {
+  if (currentPageId.value === '') return false;
+  return text.value !== getPage(currentPageId.value).Text ? true : false;
+});
 const SaveChanges = () => {
   if (currentPageId.value == '') {
     alert('Click on a page to begin editing.');
@@ -53,11 +60,13 @@ watch(currentPageId, () => {
       class="title"
       type="text"
       v-model="title"
+      v-bind:class="{ 'changes-detected': hasUnsavedTitleChanges }"
     />
     <textarea
       class="pageBody"
       type="textbox"
       v-model="text"
+      v-bind:class="{ 'changes-detected': hasUnsavedBodyChanges }"
     ></textarea>
     <div class="save-discard">
       <button v-on:click="SaveChanges">Save Changes</button>
@@ -80,6 +89,10 @@ label {
   width: 100%;
   height: 70%;
   resize: none;
+}
+
+.changes-detected {
+  border: solid 4px var(--highlight-color);
 }
 
 .save-discard > button {
