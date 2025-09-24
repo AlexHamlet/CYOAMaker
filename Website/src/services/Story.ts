@@ -6,7 +6,7 @@ const defaultPage: Page = {
   Text: 'Click a page to get started',
   Options: {},
 };
-const story = ref<StoryFile>({ Start: { id: 'Start', Text: 'Start', Options: {} } });
+export const story = ref<StoryFile>({ Start: { id: 'Start', Text: 'Start', Options: {} } });
 export const currentPageId = ref('');
 
 //Getters
@@ -22,7 +22,9 @@ export function getPage(pageId: string): Page {
 //Import
 export function setStory(storyFile: StoryFile) {
   story.value = storyFile;
-  if (!('Start' in story.value)) {
+  // if (!('Start' in story.value)) {
+  if (!story.value.Start) {
+    console.warn('Story missing start page, one has been added automatically');
     addPage('Start', 'First page of the story');
   }
   currentPageId.value = 'Start';
@@ -34,16 +36,13 @@ export function uiAddPage(pageId: string, pageText: string): void {
     alert('Ensure you have named the page.');
     return;
   }
-  if (pageId in story.value) {
-    if (confirm(pageId + ' already exists.  Are you sure you want to overwrite it?'))
-      addPage(pageId, pageText);
-  } else addPage(pageId, pageText);
+  if (story.value[pageId]) {
+    if (!confirm(pageId + ' already exists.  Are you sure you want to overwrite it?')) return;
+  }
+  addPage(pageId, pageText);
 }
 
 export function addPage(pageId: string, pageText: string): void {
-  //Ensure there is a start to the story
-  if (Object.keys(story).length == 0) pageId = 'Start';
-
   const page: Page = {
     id: pageId,
     Text: pageText,
@@ -145,7 +144,7 @@ export function getConnectedPages(page: Page): string[] {
 }
 
 export const allPages = computed((): string[] => {
-  return Object.getOwnPropertyNames(story.value);
+  return Object.keys(story.value);
 });
 
 export const orphanPages = computed((): string[] => {

@@ -32,8 +32,8 @@ const AddConnection = () => {
       v-model="text"
     />
     <PageSelector
-      :option-path="'Start'"
-      @value="(val) => (path = val)"
+      option-path="Start"
+      @value="path = $event"
     />
     <button v-on:click="AddConnection">Add</button>
   </div>

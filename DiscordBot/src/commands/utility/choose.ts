@@ -40,7 +40,8 @@ module.exports = {
         let page = storyFileContents[pageId];
 
         //Choose option
-        if (!page['Options']) {
+        console.log("Current Page Value: ", page);
+        if (Object.keys(page['Options']).length === 0) {
             await interaction.reply("It seems like the story has ended.");
             return;
         }

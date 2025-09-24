@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { story } from './services/Story';
 import ConnectionManager from './components/StoryEditor/connections/ConnectionManager.vue';
 import EditPage from './components/StoryEditor/EditPage.vue';
 import StoryTree from './components/StoryEditor/nav/StoryTree.vue';
@@ -15,6 +16,8 @@ import UnreachablePages from './components/StoryEditor/nav/UnreachablePages.vue'
     >
     </EditPage>
     <ConnectionManager class="connection-manager" />
+
+    <pre style="display: none">{{ story }}</pre>
   </div>
 </template>
 

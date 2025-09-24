@@ -23,12 +23,12 @@ export function importStory(name: string, storyFile: File): void {
 }
 
 export function exportStory(): void {
-  if (!('Start' in allPages)) {
+  if (!allPages.value.includes('Start')) {
     alert("Story must contain a page named 'Start'");
     return;
   }
 
-  const blobData = JSON.stringify(getStory);
+  const blobData = JSON.stringify(getStory());
   const blob = new Blob([blobData]);
   const a = document.createElement('a');
 
